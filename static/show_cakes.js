@@ -1,4 +1,3 @@
-// const axios_ = axios.create({ baseUrl: "http://127.0.0.1:5000" });
 const url = "http://127.0.0.1:5000";
 
 async function showAll(e) {

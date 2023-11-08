@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, jsonify, request, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, db, Cupcake
@@ -7,10 +8,12 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 cors = CORS(app)
 app.app_context().push()
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///cupcakes"
+
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    os.environ.get('DATABASE_URL',"postgresql:///cupcakes" ))
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
-app.config["SECRET_KEY"] = "abc123"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', "shhheceret")
 app.config["DEBUG_TB_INTERCEPT_REDIRECTS"] = False
 app.config['CORS_HEADERS'] = 'Content-Type'
 
