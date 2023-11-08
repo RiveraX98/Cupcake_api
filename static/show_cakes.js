@@ -1,4 +1,4 @@
-const url = "http://127.0.0.1:5000";
+const url = os.environ.get("BASE_URL", "http://127.0.0.1:5000");
 
 async function showAll(e) {
   e.preventDefault();
